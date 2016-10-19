@@ -83,91 +83,117 @@ branch that is defined to be your production environment (Default of `production
 Required parameters are indicated by **bold**, default values are in *italics*
 
 `install` *`/opt/gitlab-puppet-webhook`*
+
 Specifies the directory to clone the gitlab webhook into, this is done via a git clone
 
 `server::port` *`8080`*
+
 Specifies the TCP port that the python daemon should listen on for notifications from gitlab. This 
 module does not adjust your firewall
 
 **`server::token`** 
+
 Sets the secret token that must be submitted with the push from gitlab, this requires newer versions of
 gitlab, but is seen as a require security feature.
 
 `server::method` *`branch`*
 Defines the method to be used for deploying puppet modules to the server, branch is the only 
+
 valid method, but it is kept due to legacy code. DEPRECATED
 
 `server::prodname` *`production`*
+
 The name of your production branch, this does not have to be `production`, it is used to determine if e-mails
 should be sent based on the `emailmethod` parameter
 
 `server::envdir` *`/etc/puppet/environments`*
+
 The path where it should check out the puppet environments, this is only needed by the legacy code. DEPRECATED
 
 **`server::user`**
+
 Defines the user that the python daemon should run as, the daemon should be launched by root and will fork off to 
 the specified user, also used for file permission setups
 
 **`server::group`**
+
 Used to make sure that permissions are set correctly
 
 **`server:pemfile`**
+
 SSL PEM file for the server, must be certificate + key
 
 `server::daemon` *`true`*
+
 Should the application fork off and disconnect, or remain connected to the terminal. Set to false for debug
 
 `server::smtpserver` *`localhost`*
+
 Hostname of your mailserver that will accept mail from the daemon
 
 `server::emailfrom` *`gitlabhook@localhost`*
+
 The FROM: address used on outgoing e-mail, you should change this as most restrictive smtp servers will reject @localhost mail
 
 `server::emailmethod` *`production`*
+
 Only send e-mails when the `server::prodname` branch is being modified, valid options are `production` `development`. If its 
 set to development, e-mails will not be re-sent when you merge into production
 
 `log::filename` *`/var/log/gitlabr10khook.log`*
+
 Define the file that the daemon should log to, will attempt to set correct permissions for this file on install
 
 `log::maxsize` *`50331648`*
+
 Set the max size of the log file (will be roated when reached). Defaults to 50MB
 
 `log::level` *`WARNING`*
+
 The Log level from the webhook daemon, valid options are `CRITICAL` `ERROR` `WARNING` `INFO` `DEBUG`
 
 `r10k::config` *`/etc/r10k/r10k.yaml`*
+
 Path to the r10k config file, needed when launching r10k
 
 `legacy::enabled` *`false`*
+
 Legacy monolithic puppet module repo functionality, just don't use this... DEPRECATED
 
 `legacy::path` *`legacy-modules`*
+
 The path under your production environment where the legacy monolithic repo will be checked out
 
 **`legacy::gitpath`**
+
 Only required if `legacy::enabled=true` This is the git repo path for your monolithic puppet module pile
 
 `footprints::enabled` *`false`*
+
 Enable this to have the daemon send emails to Footprints on commit if a ticket is referenced via #12039
 supports the use of FIX #12039 to close the ticket
 
 **`footprints::project`**
+
 Required if using footprints, the numeric value of the project that you wish ticket updates to be
 submitted to, The system does not currently support multiple projects
 
 **`footprints::email`**
+
 Required if using footprints, the e-mail addres to end e-mail updates to, this assumes that your
 footprints accepts e-mail commands
 
 **`footprints::close`**
+
 The status in your footprints that indicates that the ticket is closed, this is a string value
 
 `otrs::enabled` *`false`*
+
 Enable this to have the daemon send emails to an OTRS instance, OTRS must allow special headers
 to be received, so that the updates appear to be from agents
 
 **`otrs::email`**
+
 E-mail address for your OTRS instance, updates will be sent here
 
 ## Limitations
