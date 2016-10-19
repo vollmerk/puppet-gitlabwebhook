@@ -1,34 +1,33 @@
 ; Managed by Puppet :: <%= @puppetmaster %>
 ; Do not modify this file directly it will be perodically overwritten
 [main]
-<%= @server %>
-http_port=<%= @server['port'] %>
+http_port=<%= @intserver['port'] %>
 protected_environments=outage
-secret_token=<%= @server['token'] %>
-environment_method=<%= @server['method'] %>
-production_environment=<%= @server['prodname'] %>
+secret_token=<%= @intserver['token'] %>
+environment_method=<%= @intserver['method'] %>
+production_environment=<%= @intserver['prodname'] %>
 log_file=<%= @log['filename'] %>
 log_max_size=<%= @log['maxsize'] %>
 log_level=<%= @log['level'] %>
-puppet_env_dir=<%= @server['envdir'] %>
-runas=<%= @server['user'] %>
-ssl_certfile=<%= @server['pemfile'] %>
-daemonize=<%= @server['daemon'] %>
+puppet_env_dir=<%= @intserver['envdir'] %>
+runas=<%= @intserver['user'] %>
+ssl_certfile=<%= @intserver['pemfile'] %>
+daemonize=<%= @intserver['daemon'] %>
 [r10k]
-config=<%= @r10k['config'] %>
+config=<%= @intr10k['config'] %>
 [legacy]
-enabled=<%= @legacy['enabled'] %>
-path=<%= @legacy['path'] %>
-gitpath=<%= @legacy['gitpath'] %>
+enabled=<%= @intlegacy['enabled'] %>
+path=<%= @intlegacy['path'] %>
+gitpath=<%= @intlegacy['gitpath'] %>
 [email]
-method=<%= @server['emailmethod'] %>
-from=<%= @server['emailfrom'] %>
-smtpserver=<%= @server['smtpserver'] %>
+method=<%= @intserver['emailmethod'] %>
+from=<%= @intserver['emailfrom'] %>
+smtpintserver=<%= @intserver['smtpintserver'] %>
 [otrs]
-enabled=<%= @otrs['enabled'] %>
-to=<%= @otrs['email'] %>
+enabled=<%= @intotrs['enabled'] %>
+to=<%= @intotrs['email'] %>
 [footprints]
-enabled=<%= @footprints['enabled'] %>
-project=<%= @footprints['project'] %>
-to=<%= @footprints['email'] %>
-close_status=<%= @footprints['close'] %>
+enabled=<%= @intfootprints['enabled'] %>
+project=<%= @intfootprints['project'] %>
+to=<%= @intfootprints['email'] %>
+close_status=<%= @intfootprints['close'] %>

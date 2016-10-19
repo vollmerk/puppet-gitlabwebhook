@@ -45,7 +45,13 @@ class gitlabr10khook  (
   $otrs       = $gitlabr10khook::params::otrs,
 ) inherits gitlabr10khook::params {
 
-  # Add some error checking in here somewhere
+  # Merge defaults
+  $intserver      = merge($gitlabr10khook::params::server,$server)
+  $intlog         = merge($gitlabr10khook::params::log,$log)
+  $intr10k        = merge($gitlabr10khook::params::r10k,$r10k)
+  $intlegacy      = merge($gitlabr10khook::params::legacy,$legacy)
+  $intfootprints  = merge($gitlabr10khook::params::footprints,$footprints)
+  $intotrs        = merge($gitlabr10khook::params::otrs,$otrs)
 
   # Run the install, config and then start the service
   anchor { 'gitlabr10khook::begin': } ->
