@@ -1,0 +1,33 @@
+; Managed by Puppet :: <%= @puppetmaster %>
+; Do not modify this file directly it will be perodically overwritten
+[main]
+http_port=<%= @server['port'] %>
+protected_environments=outage
+secret_token=<%= @server['token'] %>
+environment_method=<%= @server['method'] %>
+production_environment=<%= @server['prodname'] %>
+log_file=<%= @log['filename'] %>
+log_max_size=<%= @log['maxsize'] %>
+log_level=<%= @log['level'] %>
+puppet_env_dir=<%= @server['envdir'] %>
+runas=<%= @server['user'] %>
+ssl_certfile=<%= @server['pemfile'] %>
+daemonize=<%= @server['daemon'] %>
+[r10k]
+config=<%= @r10k['config'] %>
+[legacy]
+enabled=<%= @legacy['enabled'] %>
+path=<%= @legacy['path'] %>
+gitpath=<%= @legacy['gitpath'] %>
+[email]
+method=<%= @server['emailmethod'] %>
+from=<%= @server['emailfrom'] %>
+smtpserver=<%= @server['smtpserver'] %>
+[otrs]
+enabled=<%= @otrs['enabled'] %>
+to=<%= @otrs['email'] %>
+[footprints]
+enabled=<%= @footprints['enabled'] %>
+project=<%= @footprints['project'] %>
+to=<%= @footprints['email'] %>
+close_status=<%= @footprints['close'] %>

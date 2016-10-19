@@ -1,7 +1,9 @@
 # Class: gitlabr10khook
+# vim: set softtabstop=2 ts=2 sw=2 expandtab:
 # ===========================
-#
-# Full description of class gitlabr10khook here.
+# This configures the gitlab-puppet-webhook that will take
+# webhook triggers from gitlab and run r10k on your puppet server
+# it currently only supports the PUSH mechanism
 #
 # Parameters
 # ----------
@@ -34,15 +36,27 @@
 #
 # Authors
 # -------
-#
-# Author Name <author@domain.com>
-#
+# Karl Vollmer <karl.vollmer@gmail.com>
 # Copyright
 # ---------
-#
-# Copyright 2016 Your name here, unless otherwise noted.
-#
-class gitlabr10khook {
+# Copyright 2016 Karl Vollmer.
+class gitlabr10khook  (
+  $install    = $gitlabr10khook::params::install,
+  $server     = $gitlabr10khook::params::server,
+  $log        = $gitlabr10khook::params::log,
+  $r10k       = $gitlabr10khook::params::r10k,
+  $legacy     = $gitlabr10khook::params::legacy,
+  $footprints = $gitlabr10khook::params::footprints,
+  $otrs       = $gitlabr10khook::params::otrs,
+) inherits gitlabr10khook::params {
 
+  # Add some error checking in here somewhere
+
+  # Run the install, config and then start the service
+  anchor { 'gitlabr10khook::begin': } ->
+  class { '::gitlabr10khook::install': } ->
+  class { '::gitlabr10khook::config': } ~>
+  class { '::gitlabr10khook::service': } ~>
+  anchor { 'gitlabr10khook::end': }
 
 }

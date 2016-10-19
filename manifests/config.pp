@@ -1,0 +1,36 @@
+# Class: gitlabr10khook::config
+# vim: set softtabstop=2 ts=2 sw=2 expandtab:
+# ===========================
+# This configures the gitlab-puppet-webhook that will take
+# webhook triggers from gitlab and run r10k on your puppet server
+# it currently only supports the PUSH mechanism
+#
+# Authors
+# -------
+# Karl Vollmer <karl.vollmer@gmail.com>
+#
+# Copyright
+# ---------
+# Copyright 2016 Karl Vollmer.
+class gitlabr10khook::config inherits gitlabr10khook {
+
+  # Configure the Conf file
+  file { "${gitlabr10khook::install}/webhook-puppet.conf":
+    ensure  => file,
+    mode    => '0640',
+    owner   => 'root',
+    group   => $gitlabr10khook::group,
+    content => template('gitlabr10khook/webhook-puppet.erb'),
+  }
+
+  $logpath = $gitlabr10khook::log['filename']
+
+  # Make sure the log file exists and is writeable by the runner
+  file { $logpath:
+    ensure  => file,
+    mode    => '0660',
+    owner   => $gitlabr10khook::user,
+    group   => $gitlabr10khook::group,
+  }
+
+}
