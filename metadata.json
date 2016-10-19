@@ -1,6 +1,6 @@
 {
   "name": "vollmerk-gitlabr10khook",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Karl Vollmer",
   "summary": "Configure Gitlab Webhook for triggering R10k, integrates with OTRS and Footprints",
   "license": "Apache-2.0",
