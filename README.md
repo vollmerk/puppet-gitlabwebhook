@@ -14,38 +14,28 @@
 
 ## Description
 
-Start with a one- or two-sentence summary of what the module does and/or what
-problem it solves. This is your 30-second elevator pitch for your module.
-Consider including OS/Puppet version it works with.
+Webhook for updating Puppet using R10K from Gitlab repos
 
-You can give more descriptive information in a second paragraph. This paragraph
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?" If your module has a range of functionality (installation, configuration,
-management, etc.), this is the time to mention it.
+This is a simple Python webserver that accepts webhook PUSH notifications
+from Gitlab, and runs R10k to bring your puppet server up to date. It also
+has some legacy support for monolithic puppet repos. 
+
+The Python script can also trigger e-mails to Footprints or OTRS ticketing
+systems based on the commit mesage
 
 ## Setup
 
-### What gitlabr10khook affects **OPTIONAL**
+### What gitlabr10khook affects 
 
-If it's obvious what your module touches, you can skip this section. For
-example, folks can probably figure out that your mysql_instance module affects
-their MySQL instances.
+* Updates python-daemon module
+* Installs pip
+* Installs git
 
-If there's more that they should know about, though, this is the place to mention:
+### Setup Requirements 
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you might want to include an additional "Upgrading" section
-here.
+Every effort was made such that this manifest should attempt to install 
+everything it needs, but it expects python, pip, some modules, openssl
+and git to be available
 
 ### Beginning with gitlabr10khook
 
@@ -68,16 +58,12 @@ se.
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc. If there
-are Known Issues, you might want to include them under their own heading here.
+Currently only implemented for CentOS and Debian, and only for systemd 
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+Contributions will be accepted, please make sure any code you commit follows
+all of the Puppet Lint checks. Thanks!
 
-## Release Notes/Contributors/Etc. **Optional**
+Karl Vollmer <karl.vollmer@gmail.com>
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You can also add any additional sections you feel
-are necessary or important to include here. Please use the `## ` header.
