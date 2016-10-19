@@ -41,7 +41,7 @@ class gitlabr10khook::params {
     method      => 'branch',
     ## Production Environment
     ### If your production branch is not called 'production', tell us what it is here
-    prodname    => 'master',
+    prodname    => 'production',
     ### Path to Puppet Environments
     envdir      => undef,
     ### User to Run the server as

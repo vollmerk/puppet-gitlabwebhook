@@ -1,6 +1,7 @@
 ; Managed by Puppet :: <%= @puppetmaster %>
 ; Do not modify this file directly it will be perodically overwritten
 [main]
+<%= @server %>
 http_port=<%= @server['port'] %>
 protected_environments=outage
 secret_token=<%= @server['token'] %>
