@@ -33,4 +33,22 @@ class gitlabr10khook::config inherits gitlabr10khook {
     group   => $gitlabr10khook::group,
   }
 
+  # Add the service to /etc/systemd/system
+  file { '/etc/systemd/system/gitlab-puppet-webhook.service':
+    ensure  => file,
+    mode    => '0644',
+    owner   => 'root',
+    group   => 'root',
+    content => template('gitlabr10khook/startup/gitlab-puppet-webhook.service.erb'),
+  }
+
+  # Make sure the systemd conf is in place with the correct path
+  file { "${gitlabr10khook::install}/startup/systemd.conf":
+    ensure  => file,
+    mode    => '0644',
+    owner   => 'root',
+    group   => 'root',
+    content => template('gitlabr10khook/startup/systemd.conf.erb'),
+  }
+
 }

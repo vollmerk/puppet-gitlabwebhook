@@ -1,0 +1,12 @@
+[Unit]
+Description=Gitlab-Puppet-Webhook Daemon
+
+[Service]
+Type=simple
+EnvironmentFile=<%= @install %>/startup/systemd.conf
+ExecStart=<%= @install %>/gitlab-puppet-webhook
+ExecStop=/bin/kill $PID
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
