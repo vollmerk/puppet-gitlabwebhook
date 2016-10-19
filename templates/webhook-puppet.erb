@@ -6,9 +6,9 @@ protected_environments=outage
 secret_token=<%= @intserver['token'] %>
 environment_method=<%= @intserver['method'] %>
 production_environment=<%= @intserver['prodname'] %>
-log_file=<%= @log['filename'] %>
-log_max_size=<%= @log['maxsize'] %>
-log_level=<%= @log['level'] %>
+log_file=<%= @intlog['filename'] %>
+log_max_size=<%= @intlog['maxsize'] %>
+log_level=<%= @intlog['level'] %>
 puppet_env_dir=<%= @intserver['envdir'] %>
 runas=<%= @intserver['user'] %>
 ssl_certfile=<%= @intserver['pemfile'] %>
