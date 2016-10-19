@@ -24,13 +24,16 @@ class gitlabr10khook::install inherits gitlabr10khook {
     command => "git clone https://github.com/vollmerk/gitlab-puppet-webhook.git ${::gitlabr10khook::install}",
     user    => 'root',
     require => Package['git'],
+    creates => ${::gitlabr10khook::install},
+    notify  => Exec['gitlabr10khook-update-python-daemon'],
   }
 
   ## Upgrade Python-Daemon so it works
   exec { 'gitlabr10khook-update-python-daemon':
-    command => 'pip install --upgrade python-daemon',
-    user    => 'root',
-    require => Package['python-pip'],
+    command     => 'pip install --upgrade python-daemon',
+    user        => 'root',
+    require     => Package['python-pip'],
+    refreshonly => true,
   }
 
 }
