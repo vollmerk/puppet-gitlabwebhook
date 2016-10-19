@@ -24,7 +24,7 @@ class gitlabr10khook::install inherits gitlabr10khook {
     command => "git clone https://github.com/vollmerk/gitlab-puppet-webhook.git ${::gitlabr10khook::install}",
     user    => 'root',
     require => Package['git'],
-    creates => $::gitlabr10khook::install,
+    creates => $install,
     notify  => Exec['gitlabr10khook-update-python-daemon'],
   }
 
