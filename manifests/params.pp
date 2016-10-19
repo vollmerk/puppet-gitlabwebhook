@@ -32,7 +32,7 @@ class gitlabr10khook::params {
   # Main Preferences
   ## Port to listen on
   $server = {
-    port        => '7010',
+    port        => '8080',
     ### Secret Token (for gitlab)
     token       => undef,
     ## Environment Method
@@ -43,7 +43,7 @@ class gitlabr10khook::params {
     ### If your production branch is not called 'production', tell us what it is here
     prodname    => 'production',
     ### Path to Puppet Environments
-    envdir      => undef,
+    envdir      => '/etc/puppet/environments',
     ### User to Run the server as
     user        => undef,
     ### Group of the User the server runs as
