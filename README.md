@@ -97,6 +97,7 @@ Sets the secret token that must be submitted with the push from gitlab, this req
 gitlab, but is seen as a require security feature.
 
 `server::method` *`branch`*
+
 Defines the method to be used for deploying puppet modules to the server, branch is the only 
 
 valid method, but it is kept due to legacy code. DEPRECATED
