@@ -17,7 +17,7 @@ class gitlabr10khook::install inherits gitlabr10khook {
   # We're going to need OpenSSL and various other Python packages
   # For now we're going to assume they got them all, needs to be
   # Corrected, and allow for different OS's
-  ensure_packages(['python-pip','git','openssl'],{'ensure'=>'present'})
+  ensure_packages([['python'],'python-pip','git','openssl'],{'ensure'=>'present'})
 
   ## Checkout the Gitlab Puppet webhook
   exec { 'gitlabr10khook-checkout-from-gitlab':

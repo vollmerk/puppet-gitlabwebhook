@@ -19,6 +19,10 @@
   {
   "operatingsystem":"Debian",
   "operatingsystemrelease":[ "7.0","8.0" ]
+  },
+  {
+  "operatingsystem":"CentOS",
+  "operatingsystemrelease":[ "6.0" ]
   }
   ],
   "requirements": [
