@@ -14,17 +14,15 @@
 
 ## Description
 
-Module to install a Webhook for updating Puppet using R10K from Gitlab repos
-
-This module installs asimple Python webserver that accepts webhook PUSH notifications
+This module installs a simple Python webserver that accepts webhook PUSH notifications
 from Gitlab, and runs R10k to bring your puppet server up to date. It also
 has some legacy support for monolithic puppet repos. 
 
-The Python script can also trigger e-mails to Footprints or OTRS ticketing
-systems based on the commit mesage
-
 The Project for the python webserver this installs can be found at
 https://github.com/vollmerk/gitlab-puppet-webhook
+
+The Python script can also trigger e-mails to Footprints or OTRS ticketing
+systems based on the commit mesage
 
 ## Setup
 
@@ -124,39 +122,33 @@ valid method, but it is kept due to legacy code. DEPRECATED
 should be sent based on the `emailmethod` parameter
 * Default: production
 
-`server::envdir` *`/etc/puppet/environments`*
+`server::envdir` The path where it should check out the puppet environments, this is only needed by the legacy code. DEPRECATED
+* Default: /etc/puppet/environments
 
-The path where it should check out the puppet environments, this is only needed by the legacy code. DEPRECATED
-
-**`server::user`**
-
-Defines the user that the python daemon should run as, the daemon should be launched by root and will fork off to 
+**`server::user`** Defines the user that the python daemon should run as, the daemon should be launched by root and will fork off to 
 the specified user, also used for file permission setups
+* Default: undef
 
-**`server::group`**
+**`server::group`** Used to make sure that permissions are set correctly
+* Default: undef
 
-Used to make sure that permissions are set correctly
+**`server:pemfile`** SSL PEM file for the server, must be certificate + key
+* Default: undef
 
-**`server:pemfile`**
+`server::daemon` Should the application fork off and disconnect, or remain connected to the terminal. Set to false for debug
+* Default: true
 
-SSL PEM file for the server, must be certificate + key
+`server::smtpserver` Hostname of your mailserver that will accept mail from the daemon
+* Default: localhost
 
-`server::daemon` *`true`*
+`server::emailfrom` The FROM: address used on outgoing e-mail, you should change this as most restrictive smtp servers will reject @localhost mail
+* Default: gitlab@localhost
 
-Should the application fork off and disconnect, or remain connected to the terminal. Set to false for debug
-
-`server::smtpserver` *`localhost`*
-
-Hostname of your mailserver that will accept mail from the daemon
-
-`server::emailfrom` *`gitlabhook@localhost`*
-
-The FROM: address used on outgoing e-mail, you should change this as most restrictive smtp servers will reject @localhost mail
-
-`server::emailmethod` *`production`*
-
-Only send e-mails when the `server::prodname` branch is being modified, valid options are `production` `development`. If its 
+`server::emailmethod` Only send e-mails when the `server::prodname` branch is being modified, valid options are `production` `development`. If its 
 set to development, e-mails will not be re-sent when you merge into production
+* Default: production
+
+`log` A has that configures how logging should be handled for the python webserver
 
 `log::filename` *`/var/log/gitlabr10khook.log`*
 
