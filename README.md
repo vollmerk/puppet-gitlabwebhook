@@ -150,65 +150,54 @@ set to development, e-mails will not be re-sent when you merge into production
 
 `log` A has that configures how logging should be handled for the python webserver
 
-`log::filename` *`/var/log/gitlabr10khook.log`*
+`log::filename` Define the file that the daemon should log to, will attempt to set correct permissions for this file on install
+* Default: /var/log/gitlabr10khook.log
 
-Define the file that the daemon should log to, will attempt to set correct permissions for this file on install
+`log::maxsize` Set the max size of the log file (will be roated when reached). Defaults to 50MB
+* Default: 50331648
 
-`log::maxsize` *`50331648`*
+`log::level` The Log level from the webhook daemon, valid options are `CRITICAL` `ERROR` `WARNING` `INFO` `DEBUG`
+* Default: WARNING
 
-Set the max size of the log file (will be roated when reached). Defaults to 50MB
+`r10k` Hash that contains the r10k configuration, really seems unneeded, but ooh well
 
-`log::level` *`WARNING`*
+`r10k::config` Path to the r10k config file, needed when launching r10k
+* Default /etc/r10k/r10k.yaml
 
-The Log level from the webhook daemon, valid options are `CRITICAL` `ERROR` `WARNING` `INFO` `DEBUG`
+`legacy::enabled` Legacy monolithic puppet module repo functionality, just don't use this... DEPRECATED
+* Default: false
 
-`r10k::config` *`/etc/r10k/r10k.yaml`*
+`legacy::path` The path under your production environment where the legacy monolithic repo will be checked out
+* Default: legacy-modules
 
-Path to the r10k config file, needed when launching r10k
+**`legacy::gitpath`** Only required if `legacy::enabled=true` This is the git repo path for your monolithic puppet module pile
+* Default: undef
 
-`legacy::enabled` *`false`*
-
-Legacy monolithic puppet module repo functionality, just don't use this... DEPRECATED
-
-`legacy::path` *`legacy-modules`*
-
-The path under your production environment where the legacy monolithic repo will be checked out
-
-**`legacy::gitpath`**
-
-Only required if `legacy::enabled=true` This is the git repo path for your monolithic puppet module pile
-
-`footprints::enabled` *`false`*
-
-Enable this to have the daemon send emails to Footprints on commit if a ticket is referenced via #12039
+`footprints::enabled` Enable this to have the daemon send emails to Footprints on commit if a ticket is referenced via #12039
 supports the use of FIX #12039 to close the ticket
+* Default: false
 
-**`footprints::project`**
-
-Required if using footprints, the numeric value of the project that you wish ticket updates to be
+**`footprints::project`** Required if using footprints, the numeric value of the project that you wish ticket updates to be
 submitted to, The system does not currently support multiple projects
+* Default: undef
 
-**`footprints::email`**
-
-Required if using footprints, the e-mail addres to end e-mail updates to, this assumes that your
+**`footprints::email`** Required if using footprints, the e-mail addres to end e-mail updates to, this assumes that your
 footprints accepts e-mail commands
+* Default: undef
 
-**`footprints::close`**
+**`footprints::close`** The status in your footprints that indicates that the ticket is closed, this is a string value
+* Default: undef
 
-The status in your footprints that indicates that the ticket is closed, this is a string value
-
-`otrs::enabled` *`false`*
-
-Enable this to have the daemon send emails to an OTRS instance, OTRS must allow special headers
+`otrs::enabled` Enable this to have the daemon send emails to an OTRS instance, OTRS must allow special headers
 to be received, so that the updates appear to be from agents
+* Default: false
 
-**`otrs::email`**
-
-E-mail address for your OTRS instance, updates will be sent here
+**`otrs::email`** E-mail address for your OTRS instance, updates will be sent here
+* Default: undef
 
 ## Limitations
 
-Currently only implemented for CentOS and Debian, and only for systemd 
+Currently only implemented for RedHat CentOS and Debian, and only for systemd 
 
 ## Development
 
