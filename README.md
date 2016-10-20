@@ -101,32 +101,28 @@ branch that is defined to be your production environment (Default of `production
 
 **Parameters**
 
-Required parameters are indicated by **bold**, default values are in *italics*
+Required parameters are indicated by **bold**
 
 `install` Specifies the directory to clone the gitlab webhook into, this is done via a git clone
-*Default: /opt/gitlab-puppet-webhook*
+* Default: /opt/gitlab-puppet-webhook
 
 `server` Is a hash that defines how the server is to be setup, the hash takes the following arguments
 
-`port` Specifies the TCP port that the python daemon should listen on for notifications from gitlab. This 
+`server::port` Specifies the TCP port that the python daemon should listen on for notifications from gitlab. This 
 module does not adjust your firewall
-*Default: 8080*
+ * Default: 8080
 
-**`server::token`** 
-
-Sets the secret token that must be submitted with the push from gitlab, this requires newer versions of
+**`server::token`** Sets the secret token that must be submitted with the push from gitlab, this requires newer versions of
 gitlab, but is seen as a require security feature.
+* Default: undef
 
-`server::method` *`branch`*
-
-Defines the method to be used for deploying puppet modules to the server, branch is the only 
-
+`server::method` Defines the method to be used for deploying puppet modules to the server, branch is the only 
 valid method, but it is kept due to legacy code. DEPRECATED
+* Default: branch
 
-`server::prodname` *`production`*
-
-The name of your production branch, this does not have to be `production`, it is used to determine if e-mails
+`server::prodname` The name of your production branch, this does not have to be `production`, it is used to determine if e-mails
 should be sent based on the `emailmethod` parameter
+* Default: production
 
 `server::envdir` *`/etc/puppet/environments`*
 
