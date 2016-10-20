@@ -43,6 +43,15 @@ class gitlabr10khook  (
   $intfootprints  = merge($gitlabr10khook::params::footprints,$footprints)
   $intotrs        = merge($gitlabr10khook::params::otrs,$otrs)
 
+  # Make sure the bits are at least semi-valid
+  ## Make sure they specified a proper path for the installation
+  validate_absolute_path($install)
+
+  ## Make sure daemon is a boolean
+  validate_bool($intserver['daemon'])
+
+  ## Make sure that server port is an integer 
+
   # Run the install, config and then start the service
   anchor { 'gitlabr10khook::begin': } ->
   class { '::gitlabr10khook::install': } ->
