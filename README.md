@@ -14,14 +14,17 @@
 
 ## Description
 
-Webhook for updating Puppet using R10K from Gitlab repos
+Module to install a Webhook for updating Puppet using R10K from Gitlab repos
 
-This is a simple Python webserver that accepts webhook PUSH notifications
+This module installs asimple Python webserver that accepts webhook PUSH notifications
 from Gitlab, and runs R10k to bring your puppet server up to date. It also
 has some legacy support for monolithic puppet repos. 
 
 The Python script can also trigger e-mails to Footprints or OTRS ticketing
 systems based on the commit mesage
+
+The Project for the python webserver this installs can be found at
+https://github.com/vollmerk/gitlab-puppet-webhook
 
 ## Setup
 
@@ -57,6 +60,24 @@ It's unlikely that the above will give you a fully functional install but
 it should at least run. You will need to add the webhook to Your Gitlab
 project - Instructions can be found at https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/web_hooks/web_hooks.md
 
+A installation of the server that runs on port 8080 as the user gitlabwebhook with otrs integration enabled
+would look like this
+```
+class { 'gitlabr10khook':
+  server => {
+    token     => 'example',
+    user      => 'gitlabwebhook',
+    group     => 'gitlabwebhook',
+    pemfile   => '/opt/gitlab-puppet-webhook/server.pem',
+    emailfrom => 'gitlabwebhook@example',
+  },
+  otrs => {
+    enabled => true,
+    email   => 'otrs@example',
+  }
+}
+```
+
 ## Usage
 
 The webhook declration is made up of the following six hashes
@@ -82,14 +103,14 @@ branch that is defined to be your production environment (Default of `production
 
 Required parameters are indicated by **bold**, default values are in *italics*
 
-`install` *`/opt/gitlab-puppet-webhook`*
+`install` Specifies the directory to clone the gitlab webhook into, this is done via a git clone
+*Default: /opt/gitlab-puppet-webhook*
 
-Specifies the directory to clone the gitlab webhook into, this is done via a git clone
+`server` Is a hash that defines how the server is to be setup, the hash takes the following arguments
 
-`server::port` *`8080`*
-
-Specifies the TCP port that the python daemon should listen on for notifications from gitlab. This 
+`port` Specifies the TCP port that the python daemon should listen on for notifications from gitlab. This 
 module does not adjust your firewall
+*Default: 8080*
 
 **`server::token`** 
 
