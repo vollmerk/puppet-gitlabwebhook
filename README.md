@@ -58,11 +58,12 @@ It's unlikely that the above will give you a fully functional install but
 it should at least run. You will need to add the webhook to Your Gitlab
 project - Instructions can be found at https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/web_hooks/web_hooks.md
 
-A installation of the server that runs on port 8080 as the user gitlabwebhook with otrs integration enabled
+A installation of the server that runs on port 8081 as the user gitlabwebhook with otrs integration enabled
 would look like this
 ```
 class { 'gitlabr10khook':
   server => {
+    port      => '8081',
     token     => 'example',
     user      => 'gitlabwebhook',
     group     => 'gitlabwebhook',
