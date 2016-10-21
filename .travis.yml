@@ -7,5 +7,3 @@ notifications:
 env:
  - PUPPET_VERSION=3.8.7
  - PUPPET_VERSION=4.0
-task: default => [:spec,:lint]
-

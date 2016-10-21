@@ -30,3 +30,4 @@ task :test do
     Rake::Task[test].invoke
   end
 end
+task :default => [:test]
