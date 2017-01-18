@@ -59,7 +59,7 @@ project - Instructions can be found at https://gitlab.com/gitlab-org/gitlab-ce/b
 
 ## Usage
 
-The webhook declration is made up of the following six hashes
+The webhook declaration is made up of the following six hashes
 
 * server
 * log
