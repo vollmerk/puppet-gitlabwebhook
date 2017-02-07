@@ -157,6 +157,10 @@ The Log level from the webhook daemon, valid options are `CRITICAL` `ERROR` `WAR
 
 Path to the r10k config file, needed when launching r10k
 
+`r10k::binary` *`/opt/puppetlabs/puppet/bin/r10k`*
+
+Path to the r10k binary
+
 `legacy::enabled` *`false`*
 
 Legacy monolithic puppet module repo functionality, just don't use this... DEPRECATED

@@ -36,4 +36,13 @@ class gitlabr10khook::install inherits gitlabr10khook {
     refreshonly => true,
   }
 
+  ## Make sure we've checked out the specified release
+  exec { 'gitlabr10khook-checkout-tag-from-gitlab':
+    command => "git checkout tags/${gitlabr10khook::release}",
+    user    => 'root',
+    require => Exec['gitlabr10khook-checkout-from-gitlab'],
+    onlyif  => 'check current tag status',
+  }
+    
+
 }

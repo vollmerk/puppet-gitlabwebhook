@@ -73,6 +73,7 @@ class gitlabr10khook::params {
   $r10k = {
     ### Config path
     config      => '/etc/r10k/r10k.yaml',
+    binary      => '/opt/puppetlabs/puppet/bin/r10k',
   }
 
   ## DEPRECATED - Don't learn how to use this....
