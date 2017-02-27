@@ -86,6 +86,10 @@ Required parameters are indicated by **bold**, default values are in *italics*
 
 Specifies the directory to clone the gitlab webhook into, this is done via a git clone
 
+`release` *`0.2`*
+
+The TAG of https://github.com/vollmerk/gitlab-puppet-webhook you want to checkout and use
+
 `server::port` *`8080`*
 
 Specifies the TCP port that the python daemon should listen on for notifications from gitlab. This 

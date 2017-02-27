@@ -1,13 +1,13 @@
 {
   "name": "vollmerk-gitlabr10khook",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Karl Vollmer",
-  "summary": "Setup Python Daemon to receive Gitlab Webhook's for triggering R10k, integrates with OTRS and Footprints",
+  "summary": "Setup Python Daemon to receive Gitlab Webhook's for triggering R10k across one to many servers, integrates with OTRS and Footprints",
   "license": "Apache-2.0",
   "source": "https://github.com/vollmerk/puppet-gitlabwebhook.git",
   "project_page": "https://github.com/vollmerk/puppet-gitlabwebhook",
   "issues_url": "https://github.com/vollmerk/puppet-gitlabwebhook/issues",
-  "tags":["gitlab","r10k","webhook"],
+  "tags":["gitlab","r10k","webhook","orchestration"],
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0 < 5.0.0"}
   ],

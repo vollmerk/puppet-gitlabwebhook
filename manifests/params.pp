@@ -28,6 +28,7 @@ class gitlabr10khook::params {
 
   # Install Path 
   $install = '/opt/gitlab-puppet-webhook'
+  $release = '0.2'
 
   # Main Preferences
   ## Port to listen on

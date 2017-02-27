@@ -27,6 +27,7 @@
 # Copyright 2016 Karl Vollmer.
 class gitlabr10khook  (
   $install    = $gitlabr10khook::params::install,
+  $release    = $gitlabr10khook::params::release,
   $server     = $gitlabr10khook::params::server,
   $log        = $gitlabr10khook::params::log,
   $r10k       = $gitlabr10khook::params::r10k,
