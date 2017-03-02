@@ -41,7 +41,7 @@ class gitlabr10khook::install inherits gitlabr10khook {
     command => "git checkout tags/${gitlabr10khook::release}",
     user    => 'root',
     require => Exec['gitlabr10khook-checkout-from-gitlab'],
-    onlyif  => 'git name-rev --tags --name-only $(git rev-parse HEAD) | grep ${gitlabr10khook::release}',
+    unless  => 'git name-rev --tags --name-only $(git rev-parse HEAD) | grep ${gitlabr10khook::release}',
   }
     
 
