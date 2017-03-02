@@ -172,6 +172,14 @@ Path to the r10k config file, needed when launching r10k
 
 Path to the r10k binary
 
+`multimaster::enabled` *`false`*
+
+Do we need to trigger builds on other puppet servers?
+
+`multimaster::servers` *`undef`*
+
+Comma seperated list of IPs or hostnames of the hosts that the webhook should attempt to run r10k on
+
 `legacy::enabled` *`false`*
 
 Legacy monolithic puppet module repo functionality, just don't use this... DEPRECATED
