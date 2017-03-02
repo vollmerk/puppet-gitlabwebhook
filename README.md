@@ -23,6 +23,8 @@ has some legacy support for monolithic puppet repos.
 The Python script can also trigger e-mails to Footprints or OTRS ticketing
 systems based on the commit mesage
 
+This module will install the 0.2 release of the webhook by default
+
 ## Setup
 
 ### What gitlabr10khook affects 
@@ -59,12 +61,13 @@ project - Instructions can be found at https://gitlab.com/gitlab-org/gitlab-ce/b
 
 ## Usage
 
-The webhook declaration is made up of the following six hashes
+The webhook declaration is made up of the following seven hashes
 
 * server
 * log
 * r10k
 * legacy
+* multimaster
 * footprints
 * otrs
 
@@ -111,7 +114,7 @@ valid method, but it is kept due to legacy code. DEPRECATED
 The name of your production branch, this does not have to be `production`, it is used to determine if e-mails
 should be sent based on the `emailmethod` parameter
 
-`server::envdir` *`/etc/puppet/environments`*
+`server::envdir` *`/etc/puppetlab/code/environments`*
 
 The path where it should check out the puppet environments, this is only needed by the legacy code. DEPRECATED
 
@@ -145,6 +148,10 @@ The FROM: address used on outgoing e-mail, you should change this as most restri
 Only send e-mails when the `server::prodname` branch is being modified, valid options are `production` `development`. If its 
 set to development, e-mails will not be re-sent when you merge into production
 
+`server::action` *`push`*
+
+The action from Gitlab that the webhook should proccess
+
 `log::filename` *`/var/log/gitlabr10khook.log`*
 
 Define the file that the daemon should log to, will attempt to set correct permissions for this file on install
@@ -157,7 +164,7 @@ Set the max size of the log file (will be roated when reached). Defaults to 50MB
 
 The Log level from the webhook daemon, valid options are `CRITICAL` `ERROR` `WARNING` `INFO` `DEBUG`
 
-`r10k::config` *`/etc/r10k/r10k.yaml`*
+`r10k::config` *`/etc/puppetlabs/r10k/r10k.yaml`*
 
 Path to the r10k config file, needed when launching r10k
 
