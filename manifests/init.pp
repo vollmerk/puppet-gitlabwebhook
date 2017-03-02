@@ -26,20 +26,22 @@
 # ---------
 # Copyright 2016 Karl Vollmer.
 class gitlabr10khook  (
-  $install    = $gitlabr10khook::params::install,
-  $release    = $gitlabr10khook::params::release,
-  $server     = $gitlabr10khook::params::server,
-  $log        = $gitlabr10khook::params::log,
-  $r10k       = $gitlabr10khook::params::r10k,
-  $legacy     = $gitlabr10khook::params::legacy,
-  $footprints = $gitlabr10khook::params::footprints,
-  $otrs       = $gitlabr10khook::params::otrs,
+  $install      = $gitlabr10khook::params::install,
+  $release      = $gitlabr10khook::params::release,
+  $server       = $gitlabr10khook::params::server,
+  $log          = $gitlabr10khook::params::log,
+  $r10k         = $gitlabr10khook::params::r10k,
+  $multimaster  = $gitlabr10khook::params::multimaster,
+  $legacy       = $gitlabr10khook::params::legacy,
+  $footprints   = $gitlabr10khook::params::footprints,
+  $otrs         = $gitlabr10khook::params::otrs,
 ) inherits gitlabr10khook::params {
 
   # Merge defaults
   $intserver      = merge($gitlabr10khook::params::server,$server)
   $intlog         = merge($gitlabr10khook::params::log,$log)
   $intr10k        = merge($gitlabr10khook::params::r10k,$r10k)
+  $intmultimaster = merge($gitlabr10khook::params::multimaster,$multimaster)
   $intlegacy      = merge($gitlabr10khook::params::legacy,$legacy)
   $intfootprints  = merge($gitlabr10khook::params::footprints,$footprints)
   $intotrs        = merge($gitlabr10khook::params::otrs,$otrs)

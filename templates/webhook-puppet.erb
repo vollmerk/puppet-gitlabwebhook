@@ -5,6 +5,7 @@ http_port=<%= @intserver['port'] %>
 protected_environments=outage
 secret_token=<%= @intserver['token'] %>
 environment_method=<%= @intserver['method'] %>
+gitlab_action=<%= @intserver['action'] %>
 production_environment=<%= @intserver['prodname'] %>
 log_file=<%= @intlog['filename'] %>
 log_max_size=<%= @intlog['maxsize'] %>
@@ -15,6 +16,10 @@ ssl_certfile=<%= @intserver['pemfile'] %>
 daemonize=<%= @intserver['daemon'] %>
 [r10k]
 config=<%= @intr10k['config'] %>
+binary=<%= @intr10k['binary'] %>
+[multimaster]
+enabled=<%= @intmultimaster['enabled'] %>
+servers=<%= @intmultimaster['servers'] %>
 [legacy]
 enabled=<%= @intlegacy['enabled'] %>
 path=<%= @intlegacy['path'] %>

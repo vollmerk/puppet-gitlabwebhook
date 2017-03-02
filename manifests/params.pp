@@ -44,7 +44,7 @@ class gitlabr10khook::params {
     ### If your production branch is not called 'production', tell us what it is here
     prodname    => 'production',
     ### Path to Puppet Environments
-    envdir      => '/etc/puppet/environments',
+    envdir      => '/etc/puppetlabs/code/environments',
     ### User to Run the server as
     user        => undef,
     ### Group of the User the server runs as
@@ -59,6 +59,8 @@ class gitlabr10khook::params {
     emailfrom   => 'gitlabhook@localhost',
     ### E-mail trigger, only on production / development 
     emailmethod => 'production',
+    ### Gitlab action to trigger on, only do anything if it's a push
+    action      => 'push'
   }
 
   ## Logging
@@ -73,8 +75,16 @@ class gitlabr10khook::params {
 
   $r10k = {
     ### Config path
-    config      => '/etc/r10k/r10k.yaml',
+    config      => '/etc/puppetlabs/r10k/r10k.yaml',
     binary      => '/opt/puppetlabs/puppet/bin/r10k',
+  }
+
+  ### For use with systems that need to ssh to other compile masters to deploy code
+  $multimaster = {
+    ### Multimaster configuration
+    enabled => false,
+    ### Server List, comma seperated value
+    servers => undef,
   }
 
   ## DEPRECATED - Don't learn how to use this....
