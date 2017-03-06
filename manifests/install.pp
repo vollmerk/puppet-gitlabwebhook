@@ -21,8 +21,7 @@ class gitlabr10khook::install inherits gitlabr10khook {
 
   ## Checkout the Gitlab Puppet webhook
   exec { 'gitlabr10khook-checkout-from-gitlab':
-    command => "git clone --branch ${gitlabr10khook::release} https://github.com/vollmerk/gitlab-puppet-webhook.git ${gitlabr10khook::install}",
-    user    => 'root',
+    command => "git clone --branch ${gitlabr10khook::release} https://github.com/vollmerk/gitlab-puppet-webhook.git ${gitlabr10khook::install}",    user    => 'root',
     require => Package['git'],
     creates => $gitlabr10khook::install,
     notify  => Exec['gitlabr10khook-update-python-daemon'],
@@ -38,7 +37,8 @@ class gitlabr10khook::install inherits gitlabr10khook {
 
   ## Make sure we've checked out the specified release
   exec { 'gitlabr10khook-checkout-tag-from-gitlab':
-    command => "git checkout master;git pull;git checkout tags/${gitlabr10khook::release}",
+    command => "git checkout master;git fetch;git checkout tags/${gitlabr10khook::release}",
+    cwd     => $gitlabr10khook::install,
     user    => 'root',
     require => Exec['gitlabr10khook-checkout-from-gitlab'],
     unless  => 'git name-rev --tags --name-only $(git rev-parse HEAD) | grep ${gitlabr10khook::release}',
