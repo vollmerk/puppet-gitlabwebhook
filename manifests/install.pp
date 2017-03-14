@@ -14,10 +14,24 @@
 # Copyright 2016 Karl Vollmer
 class gitlabr10khook::install inherits gitlabr10khook {
 
+  # We have to account for different os versions on the package name
+  case $::osfamily {
+    'Redhat': {
+      $python_pip_package = $osreleasemajor ? {
+        /^(5|6)$/ => 'python-pip',
+        '7'       => 'python27-python-pip',
+        default   => undef,
+      }
+    }
+    'Debian': {
+      $python_pip_package = 'python-pip'
+    }
+  }
+
   # We're going to need OpenSSL and various other Python packages
   # For now we're going to assume they got them all, needs to be
   # Corrected, and allow for different OS's
-  ensure_packages(['python','python-pip','git','openssl'],{'ensure'=>'present'})
+  ensure_packages(['python',$python_pip_package,'git','openssl'],{'ensure'=>'present'})
 
   ## Checkout the Gitlab Puppet webhook
   exec { 'gitlabr10khook-checkout-from-gitlab':
