@@ -14,24 +14,10 @@
 # Copyright 2016 Karl Vollmer
 class gitlabr10khook::install inherits gitlabr10khook {
 
-  # We have to account for different os versions on the package name
-  case $::osfamily {
-    'Redhat': {
-      $python_pip_package = $osreleasemajor ? {
-        /^(5|6)$/ => 'python-pip',
-        '7'       => 'python27-python-pip',
-        default   => undef,
-      }
-    }
-    'Debian': {
-      $python_pip_package = 'python-pip'
-    }
-  }
-
   # We're going to need OpenSSL and various other Python packages
   # For now we're going to assume they got them all, needs to be
   # Corrected, and allow for different OS's
-  ensure_packages(['python',$python_pip_package,'git','openssl'],{'ensure'=>'present'})
+  ensure_packages(['python','git','openssl'],{'ensure'=>'present'})
 
   ## Checkout the Gitlab Puppet webhook
   exec { 'gitlabr10khook-checkout-from-gitlab':
@@ -41,11 +27,26 @@ class gitlabr10khook::install inherits gitlabr10khook {
     notify  => Exec['gitlabr10khook-update-python-daemon'],
   }
 
+  exec { 'gitlabr10khook-pip':
+    command     => 'easy_install pip',
+    user        => 'root',
+    require     => Package['python'],
+    refreshonly => true,
+  }
+
   ## Upgrade Python-Daemon so it works
   exec { 'gitlabr10khook-update-python-daemon':
     command     => 'pip install --upgrade python-daemon',
     user        => 'root',
-    require     => Package['python-pip'],
+    require     => Exec['gitlabr10khook-pip'],
+    refreshonly => true,
+    notify      => Exec['gitlabr10khook-slackweb'],
+  }
+
+  exec { 'gitlabr10khook-slackweb':
+    command     => 'pip install slackweb',
+    user        => 'root',
+    require     => Exec['gitlabr10khook-pip'],
     refreshonly => true,
   }
 
