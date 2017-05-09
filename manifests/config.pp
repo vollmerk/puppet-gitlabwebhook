@@ -23,14 +23,25 @@ class gitlabr10khook::config inherits gitlabr10khook {
     content => template('gitlabr10khook/webhook-puppet.erb'),
   }
 
-  $logpath = $gitlabr10khook::log['filename']
+  $logfile = $gitlabr10khook::log['filename']
+  $logdir = dirname($logfile)
+
+  # Make sure the log directory exists, this won't work for
+  # recursive cause :( 
+  file { $logdir:
+    ensure  => directory,
+    mode    => '0770',
+    owner   => $gitlabr10khook:user,
+    group   => $gitlabr10khook:group,
+  }
 
   # Make sure the log file exists and is writeable by the runner
-  file { $logpath:
+  file { $logfile:
     ensure  => file,
     mode    => '0660',
     owner   => $gitlabr10khook::user,
     group   => $gitlabr10khook::group,
+    require => File[$logdir],
   }
 
   # Add the service to /etc/systemd/system
