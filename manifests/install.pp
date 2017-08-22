@@ -49,7 +49,7 @@ class gitlabr10khook::install inherits gitlabr10khook {
     user        => 'root',
     require     => Exec['gitlabr10khook-pip'],
     refreshonly => true,
-    notify      => Exec['gitlabr10khook-psutil']
+    notify      => Exec['gitlabr10khook-psutil'],
   }
 
   exec { 'gitlabr10khook-psutil':
@@ -66,5 +66,5 @@ class gitlabr10khook::install inherits gitlabr10khook {
     user    => 'root',
     require => Exec['gitlabr10khook-checkout-from-gitlab'],
     unless  => 'git name-rev --tags --name-only $(git rev-parse HEAD) | grep ${gitlabr10khook::release}',
-  } 
+  }
 }

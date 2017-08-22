@@ -47,10 +47,10 @@ class gitlabr10khook  (
   $intotrs        = merge($gitlabr10khook::params::otrs,$otrs)
 
   # Run the install, config and then start the service
-  anchor { 'gitlabr10khook::begin': } ->
-  class { '::gitlabr10khook::install': } ->
-  class { '::gitlabr10khook::config': } ~>
-  class { '::gitlabr10khook::service': } ~>
-  anchor { 'gitlabr10khook::end': }
+  anchor { 'gitlabr10khook::begin': }
+  -> class { '::gitlabr10khook::install': }
+  -> class { '::gitlabr10khook::config': }
+  ~> class { '::gitlabr10khook::service': }
+  ~> anchor { 'gitlabr10khook::end': }
 
 }

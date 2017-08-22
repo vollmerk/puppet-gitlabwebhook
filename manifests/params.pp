@@ -8,15 +8,15 @@
 #
 # Variables
 # ----------
-#
-# Here you should define a list of variables that this module would require.
-#
-# * `sample variable`
-#  Explanation of how this variable affects the function of this class and if
-#  it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#  External Node Classifier as a comma separated list of hostnames." (Note,
-#  global variables should be avoided in favor of class parameters as
-#  of Puppet 2.6.)
+# @param install /opt/gitlab-puppet-webhhook is the default location
+# @param release The tag point for the git project to checkout
+# @param server The server hash with all of the server configuration data
+# @param multimaster Enable/Disable multiemaster support
+# @param log Logging settings
+# @param r10k R10k Binary location and information
+# @param legacy Turn off legacy... just do it trust me
+# @param footprints Settings for footprints e-mail updates
+# @param otrs Settings for OTRS e-mail update functionality
 #
 # Authors
 # -------
@@ -60,7 +60,7 @@ class gitlabr10khook::params {
     ### E-mail trigger, only on production / development 
     emailmethod => 'production',
     ### Gitlab action to trigger on, only do anything if it's a push
-    action      => 'push'
+    action      => 'push',
   }
 
   ## Logging
