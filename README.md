@@ -23,7 +23,7 @@ has some legacy support for monolithic puppet repos.
 The Python script can also trigger e-mails to Footprints or OTRS ticketing
 systems based on the commit mesage
 
-This module will install the 0.2 release of the webhook by default
+This module will install the 0.3 release of the webhook by default
 
 ## Setup
 
