@@ -32,8 +32,8 @@ class gitlabr10khook::config inherits gitlabr10khook {
   file { $logdir:
     ensure => directory,
     mode   => '0770',
-    owner  => $gitlabr10khook:user,
-    group  => $gitlabr10khook:group,
+    owner  => $gitlabr10khook::user,
+    group  => $gitlabr10khook::group,
   }
 
   # Make sure the log file exists and is writeable by the runner
