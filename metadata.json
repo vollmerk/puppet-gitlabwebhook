@@ -9,7 +9,7 @@
   "issues_url": "https://github.com/vollmerk/puppet-gitlabwebhook/issues",
   "tags":["gitlab","r10k","webhook","orchestration"],
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0 < 5.0.0"}
+    {"name":"puppetlabs-stdlib","version_requirement":">= 3.0.0 < 5.0.0"}
   ],
   "operatingsystem_support": [
   {
