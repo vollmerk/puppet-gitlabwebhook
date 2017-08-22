@@ -32,6 +32,8 @@ This module will install the 0.2 release of the webhook by default
 * Updates python-daemon module
 * Installs pip
 * Installs git
+* Installs psutil python module
+* Installs slackweb python module
 
 ### Setup Requirements 
 
@@ -55,9 +57,23 @@ class { 'gitlabr10khook':
    },
 }
 ```
+
 It's unlikely that the above will give you a fully functional install but
 it should at least run. You will need to add the webhook to Your Gitlab
 project - Instructions can be found at https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/web_hooks/web_hooks.md
+
+
+##### Hiera Example
+```
+gitlabr10khook::server:
+  token: 'mytoken'
+  user: 'myuser'
+  group: 'mygroup'
+  pemfile: 'cert.pem'
+gitlabr10khook::multimaster:
+  enabled: true
+  servers: '10.0.0.1,10.0.0.2'
+```
 
 ## Usage
 

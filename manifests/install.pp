@@ -21,7 +21,8 @@ class gitlabr10khook::install inherits gitlabr10khook {
 
   ## Checkout the Gitlab Puppet webhook
   exec { 'gitlabr10khook-checkout-from-gitlab':
-    command => "git clone --branch ${gitlabr10khook::release} https://github.com/vollmerk/gitlab-puppet-webhook.git ${gitlabr10khook::install}",    user    => 'root',
+    command => "git clone --branch ${gitlabr10khook::release} https://github.com/vollmerk/gitlab-puppet-webhook.git ${gitlabr10khook::install}",
+    user    => 'root',
     require => Package['git'],
     creates => $gitlabr10khook::install,
     notify  => Exec['gitlabr10khook-update-python-daemon'],
@@ -45,6 +46,14 @@ class gitlabr10khook::install inherits gitlabr10khook {
 
   exec { 'gitlabr10khook-slackweb':
     command     => 'pip install slackweb',
+    user        => 'root',
+    require     => Exec['gitlabr10khook-pip'],
+    refreshonly => true,
+    notify      => Exec['gitlabr10khook-psutil']
+  }
+
+  exec { 'gitlabr10khook-psutil':
+    command     => 'pip install psutil',
     user        => 'root',
     require     => Exec['gitlabr10khook-pip'],
     refreshonly => true,
