@@ -12,9 +12,9 @@ class gitlabr10khook::service inherits gitlabr10khook {
 
   # Define service, assumes the systemd stuff worked 
   service { 'gitlabr10khook-server':
-    ensure  => true,
-    enable  => true,
-    name    => 'gitlab-puppet-webhook',
+    ensure => true,
+    enable => true,
+    name   => 'gitlab-puppet-webhook',
   }
 
 }

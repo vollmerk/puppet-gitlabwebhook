@@ -19,28 +19,28 @@ class gitlabr10khook::config inherits gitlabr10khook {
     ensure  => file,
     mode    => '0640',
     owner   => 'root',
-    group   => $gitlabr10khook::group,
+    group   => $::gitlabr10khook::group,
     content => template('gitlabr10khook/webhook-puppet.erb'),
   }
 
-  $logfile = $gitlabr10khook::log['filename']
+  $logfile = $::gitlabr10khook::log['filename']
   $logdir = dirname($logfile)
 
   # Make sure the log directory exists, this won't work for
   # recursive cause :( 
   file { $logdir:
-    ensure  => directory,
-    mode    => '0770',
-    owner   => $gitlabr10khook:user,
-    group   => $gitlabr10khook:group,
+    ensure => directory,
+    mode   => '0770',
+    owner  => $::gitlabr10khook:user,
+    group  => $::gitlabr10khook:group,
   }
 
   # Make sure the log file exists and is writeable by the runner
   file { $logfile:
     ensure  => file,
     mode    => '0660',
-    owner   => $gitlabr10khook::user,
-    group   => $gitlabr10khook::group,
+    owner   => $::gitlabr10khook::user,
+    group   => $::gitlabr10khook::group,
     require => File[$logdir],
   }
 

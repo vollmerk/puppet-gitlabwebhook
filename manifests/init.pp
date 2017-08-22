@@ -10,6 +10,15 @@
 #
 # Variables
 # ----------
+# @param install /opt/gitlab-puppet-webhhook is the default location
+# @param release The tag point for the git project to checkout
+# @param server The server hash with all of the server configuration data
+# @param multimaster Enable/Disable multiemaster support
+# @param log Logging settings
+# @param r10k R10k Binary location and information
+# @param legacy Turn off legacy... just do it trust me
+# @param footprints Settings for footprints e-mail updates
+# @param otrs Settings for OTRS e-mail update functionality
 #
 # Examples
 # --------
