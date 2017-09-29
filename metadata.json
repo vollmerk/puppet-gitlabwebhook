@@ -1,6 +1,6 @@
 {
   "name": "vollmerk-gitlabr10khook",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Karl Vollmer",
   "summary": "Setup Python Daemon to receive Gitlab Webhook's for triggering R10k across one to many servers, integrates with OTRS and Footprints",
   "license": "Apache-2.0",

@@ -27,6 +27,9 @@ This module will install the 0.3 release of the webhook by default
 
 ## Changelog
 
+0.1.3 
+ - Fix README
+
 0.1.2
  - Fix missing gcc package for psutil module install
 
