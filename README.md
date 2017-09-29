@@ -29,6 +29,7 @@ This module will install the 0.3 release of the webhook by default
 
 0.1.3 
  - Fix README
+ - Add python-devel package requirement
 
 0.1.2
  - Fix missing gcc package for psutil module install
