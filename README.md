@@ -29,8 +29,12 @@ This module will install the 0.3 release of the webhook by default
 
 0.1.2
  - Fix missing gcc package for psutil module install
+
 0.1.1
  - Add psutil python module installation
+
+0.1.0
+ - Bump to 0.3 Tag of Webhook
 
 ## Setup
 
