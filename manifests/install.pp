@@ -17,7 +17,7 @@ class gitlabr10khook::install inherits gitlabr10khook {
   # We're going to need OpenSSL and various other Python packages
   # For now we're going to assume they got them all, needs to be
   # Corrected, and allow for different OS's
-  ensure_packages(['python','git','openssl'],{'ensure'=>'present'})
+  ensure_packages(['python','gcc','git','openssl'],{'ensure'=>'present'})
 
   ## Checkout the Gitlab Puppet webhook
   exec { 'gitlabr10khook-checkout-from-gitlab':
@@ -52,10 +52,11 @@ class gitlabr10khook::install inherits gitlabr10khook {
     notify      => Exec['gitlabr10khook-psutil'],
   }
 
+  # PSutil requires gcc to compile, so we have to require that package
   exec { 'gitlabr10khook-psutil':
     command     => 'pip install psutil',
     user        => 'root',
-    require     => Exec['gitlabr10khook-pip'],
+    require     => [Exec['gitlabr10khook-pip'],Package['gcc']],
     refreshonly => true,
   }
 

@@ -25,6 +25,13 @@ systems based on the commit mesage
 
 This module will install the 0.3 release of the webhook by default
 
+## Changelog
+
+0.1.2
+ - Fix missing gcc package for psutil module install
+0.1.1
+ - Add psutil python module installation
+
 ## Setup
 
 ### What gitlabr10khook affects 
