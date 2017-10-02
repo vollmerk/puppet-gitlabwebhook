@@ -56,7 +56,7 @@ class gitlabr10khook::install inherits gitlabr10khook {
   exec { 'gitlabr10khook-psutil':
     command     => 'pip install psutil',
     user        => 'root',
-    require     => [Exec['gitlabr10khook-pip'],Package['gcc']],
+    require     => [Exec['gitlabr10khook-pip'],Package['gcc'],Package['python-devel']],
     refreshonly => true,
   }
 
