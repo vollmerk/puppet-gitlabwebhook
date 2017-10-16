@@ -23,9 +23,12 @@ has some legacy support for monolithic puppet repos.
 The Python script can also trigger e-mails to Footprints or OTRS ticketing
 systems based on the commit mesage
 
-This module will install the 0.3 release of the webhook by default
+This module will install the `0.4` release of the webhook by default
 
 ## Changelog
+
+0.1.4
+ - Fix Systemctl startup scripts
 
 0.1.3 
  - Fix README
@@ -120,7 +123,7 @@ Required parameters are indicated by **bold**, default values are in *italics*
 
 Specifies the directory to clone the gitlab webhook into, this is done via a git clone
 
-`release` *`0.2`*
+`release` *`0.4`*
 
 The TAG of https://github.com/vollmerk/gitlab-puppet-webhook you want to checkout and use
 
