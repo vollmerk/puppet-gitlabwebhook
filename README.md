@@ -17,8 +17,8 @@
 Webhook for updating Puppet using R10K from Gitlab repos
 
 This is a simple Python webserver that accepts webhook PUSH notifications
-from Gitlab, and runs R10k to bring your puppet server up to date. It also
-has some legacy support for monolithic puppet repos. 
+from Gitlab, and runs R10k to bring your puppet server up to date. The newest
+versions of the Python script no longer support monolithic repos
 
 The Python script can also trigger e-mails to Footprints or OTRS ticketing
 systems based on the commit mesage
