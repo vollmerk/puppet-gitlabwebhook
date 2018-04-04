@@ -20,7 +20,7 @@ class gitlabr10khook::config inherits gitlabr10khook {
     ensure  => file,
     mode    => '0640',
     owner   => 'root',
-    group   => $gitlabr10khook::group,
+    group   => $gitlabr10khook::server['group'],
     content => template('gitlabr10khook/webhook-puppet.erb'),
   }
 
@@ -32,16 +32,16 @@ class gitlabr10khook::config inherits gitlabr10khook {
   file { $logdir:
     ensure => directory,
     mode   => '0770',
-    owner  => $gitlabr10khook::user,
-    group  => $gitlabr10khook::group,
+    owner  => $gitlabr10khook::server['user'],
+    group  => $gitlabr10khook::server['group'],
   }
 
   # Make sure the log file exists and is writeable by the runner
   file { $logfile:
     ensure  => file,
     mode    => '0660',
-    owner   => $gitlabr10khook::user,
-    group   => $gitlabr10khook::group,
+    owner   => $gitlabr10khook::server['user'],
+    group   => $gitlabr10khook::server['group'],
     require => File[$logdir],
   }
 
