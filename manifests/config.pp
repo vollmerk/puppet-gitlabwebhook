@@ -31,7 +31,7 @@ class gitlabr10khook::config inherits gitlabr10khook {
   # FIXME: There should be an enable on this, and some legit config
   firewall { 'gitlabr10khook-firewall-allow': 
     proto   => 'tcp',
-    dports  => $::intserver['port'],
+    dports  => $gitlabr10khook::intserver['port'],
     action  => accept,
   }
 
