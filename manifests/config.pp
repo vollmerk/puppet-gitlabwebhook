@@ -29,7 +29,7 @@ class gitlabr10khook::config inherits gitlabr10khook {
 
   ## We're going to assume you're using the puppetlabs-firewall module
   # FIXME: There should be an enable on this, and some legit config
-  firewall { 
+  firewall { 'gitlabr10khook-firewall-allow': 
     proto   => 'tcp',
     dports  => $::intserver['port'],
     action  => accept,
