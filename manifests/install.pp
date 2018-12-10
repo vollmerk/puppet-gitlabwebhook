@@ -40,7 +40,7 @@ class gitlabr10khook::install inherits gitlabr10khook {
   exec { 'gitlabr10khook-slackweb':
     command     => 'pip install slackweb',
     user        => 'root',
-    require     => Exec['gitlabr10khook-pip'],
+    require     => Package['python-pip'],
     refreshonly => true,
     notify      => Exec['gitlabr10khook-psutil'],
   }
@@ -49,7 +49,7 @@ class gitlabr10khook::install inherits gitlabr10khook {
   exec { 'gitlabr10khook-psutil':
     command     => 'pip install psutil',
     user        => 'root',
-    require     => [Exec['gitlabr10khook-pip'],Package['gcc'],Package['python-devel']],
+    require     => [Package['python-pip'],Package['gcc'],Package['python-devel']],
     refreshonly => true,
   }
 
