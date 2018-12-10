@@ -27,6 +27,14 @@ class gitlabr10khook::config inherits gitlabr10khook {
   $logfile = $gitlabr10khook::log['filename']
   $logdir = dirname($logfile)
 
+  ## We're going to assume you're using the puppetlabs-firewall module
+  # FIXME: There should be an enable on this, and some legit config
+  firewall { 
+    proto   => 'tcp',
+    dports  => $::intserver['port'],
+    action  => accept,
+  }
+
   # Make sure the log directory exists, this won't work for
   # recursive cause :( 
   file { $logdir:
