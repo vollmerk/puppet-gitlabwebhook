@@ -28,13 +28,6 @@ class gitlabr10khook::install inherits gitlabr10khook {
     notify  => Exec['gitlabr10khook-update-python-daemon'],
   }
 
-  exec { 'gitlabr10khook-pip':
-    command     => 'easy_install pip',
-    user        => 'root',
-    require     => Package['python'],
-    refreshonly => true,
-  }
-
   ## Upgrade Python-Daemon so it works
   exec { 'gitlabr10khook-update-python-daemon':
     command     => 'pip install --upgrade python-daemon',
