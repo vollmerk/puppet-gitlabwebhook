@@ -32,7 +32,7 @@ class gitlabr10khook::install inherits gitlabr10khook {
   exec { 'gitlabr10khook-update-python-daemon':
     command     => 'pip install --upgrade python-daemon',
     user        => 'root',
-    require     => Exec['gitlabr10khook-pip'],
+    require     => Package['python-pip'],
     refreshonly => true,
     notify      => Exec['gitlabr10khook-slackweb'],
   }
