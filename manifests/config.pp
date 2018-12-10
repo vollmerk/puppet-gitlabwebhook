@@ -29,8 +29,8 @@ class gitlabr10khook::config inherits gitlabr10khook {
 
   ## We're going to assume you're using the puppetlabs-firewall module
   # FIXME: There should be an enable on this, and some legit config
-  firewall { 'gitlabr10khook-firewall-allow': 
-    proto   => 'tcp',
+  firewall { '100 GitlabWebhook Allow': 
+    proto   => tcp,
     dport   => $gitlabr10khook::intserver['port'],
     action  => accept,
   }
