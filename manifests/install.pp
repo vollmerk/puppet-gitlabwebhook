@@ -17,7 +17,7 @@ class gitlabr10khook::install inherits gitlabr10khook {
   # We're going to need OpenSSL and various other Python packages
   # For now we're going to assume they got them all, needs to be
   # Corrected, and allow for different OS's
-  ensure_packages(['python-devel','python','python-pip','gcc','git','openssl'],{'ensure'=>'present'})
+  ensure_packages(['python2-devel','python2','python2-pip','gcc','git','openssl'],{'ensure'=>'present'})
 
   ## Checkout the Gitlab Puppet webhook
   exec { 'gitlabr10khook-checkout-from-gitlab':
@@ -30,7 +30,7 @@ class gitlabr10khook::install inherits gitlabr10khook {
 
   ## Upgrade Python-Daemon so it works
   exec { 'gitlabr10khook-update-python-daemon':
-    command     => 'pip install --upgrade python-daemon',
+    command     => 'pip2 install --upgrade python-daemon',
     user        => 'root',
     require     => Package['python-pip'],
     refreshonly => true,
@@ -38,7 +38,7 @@ class gitlabr10khook::install inherits gitlabr10khook {
   }
 
   exec { 'gitlabr10khook-slackweb':
-    command     => 'pip install slackweb',
+    command     => 'pip2 install slackweb',
     user        => 'root',
     require     => Package['python-pip'],
     refreshonly => true,
@@ -47,7 +47,7 @@ class gitlabr10khook::install inherits gitlabr10khook {
 
   # PSutil requires gcc to compile, so we have to require that package
   exec { 'gitlabr10khook-psutil':
-    command     => 'pip install psutil',
+    command     => 'pip2 install psutil',
     user        => 'root',
     require     => [Package['python-pip'],Package['gcc'],Package['python-devel']],
     refreshonly => true,
